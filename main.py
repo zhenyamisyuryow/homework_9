@@ -5,13 +5,12 @@ def input_error(func):
     def handler(*args):
         try:
             return func(*args)
-        except (KeyError, ValueError, IndexError) as e:
-            if type(e) == KeyError:
-                return f"Error: key doesn't exist."
-            elif type(e) == ValueError:
-                return "Error: phone can only contain digits."
-            elif type(e) == IndexError:
-                return "Error: provide both name and phone number."
+        except KeyError:
+            return "Error: key doesn't exist."
+        except ValueError:
+            return "Error: phone can only contain digits."
+        except IndexError:
+            return "Error: provide both name and phone number."
     return handler
 
 @input_error
@@ -71,6 +70,8 @@ def main():
 
         if command in func_maps:
             print(func_maps[command](*args))
+        else:
+            print("Command is not supported. Please choose between: hello, add, change, phone or showall.")
 
 if __name__ == "__main__":
     main()
