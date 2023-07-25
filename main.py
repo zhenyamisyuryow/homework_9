@@ -11,6 +11,8 @@ def input_error(func):
             return "Error: phone can only contain digits."
         except IndexError:
             return "Error: provide both name and phone number."
+        except TypeError:
+            return "Error: wrong input. Try again."
     return handler
 
 @input_error
